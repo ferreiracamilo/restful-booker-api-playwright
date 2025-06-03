@@ -5,7 +5,61 @@
         "totalprice" : 111,
         "depositpaid" : true,
         "checkin" : "2018-01-01",
-        "checkout" : "2019-01-01",
+        "checkout" : null,
+        "additionalneeds" : "Breakfast"
+    },
+    {
+        "firstname" : "Jim",
+        "lastname" : "Brown",
+        "totalprice" : 111,
+        "depositpaid" : true,
+        "checkin" : "2018-01-01",
+        "checkout" : 20180101,
+        "additionalneeds" : "Breakfast"
+    },
+    {
+        "firstname" : "Jim",
+        "lastname" : "Brown",
+        "totalprice" : 111,
+        "depositpaid" : true,
+        "checkin" : "2018-01-01",
+        "checkout" : " 2018-01-01",
+        "additionalneeds" : "Breakfast"
+    },
+    {
+        "firstname" : "Jim",
+        "lastname" : "Brown",
+        "totalprice" : 111,
+        "depositpaid" : true,
+        "checkin" : "2018-01-01",
+        "checkout" : "2018-01-01 ",
+        "additionalneeds" : "Breakfast"
+    },
+    {
+        "firstname" : "Jim",
+        "lastname" : "Brown",
+        "totalprice" : 111,
+        "depositpaid" : true,
+        "checkin" : "2018-01-01",
+        "checkout" : "a2018-01-01",
+        "additionalneeds" : "Breakfast"
+    },
+    {
+        "firstname" : "Jim",
+        "lastname" : "Brown",
+        "totalprice" : 111,
+        "depositpaid" : true,
+        "checkin" : "2018-01-01",
+        "checkout" : "2018-01-01a",
+        "additionalneeds" : "Breakfast"
+    },
+    {
+        "firstname" : "Jim",
+        "lastname" : "Brown",
+        "totalprice" : 111,
+        "depositpaid" : true,
+        "checkin" : "2018-01-01",
+        "checkout" : "01-2018-01",
         "additionalneeds" : "Breakfast"
     }
 ]
