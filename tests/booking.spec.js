@@ -1,7 +1,6 @@
 import { test, expect, request } from '@playwright/test';
 
 test.describe('CREATE Booking', () => {
-    //a
 
     test('[TC1] +POST CreateBooking', async ({ request }) => {
         let response;
@@ -38,11 +37,10 @@ test.describe('CREATE Booking', () => {
                 expect(body).toHaveProperty('bookingid');
                 expect(typeof body.bookingid).toBe('number');
         });
-
-
+    //END TEST
     });
 
-
+//END DESCRIBE
 });
 
 test.describe('DELETE Booking', () => {
