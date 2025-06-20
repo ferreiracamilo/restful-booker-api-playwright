@@ -34,6 +34,11 @@ test.describe('CREATE Booking', () => {
             expect(response.status()).toBe(200);
         });
 
+        await test.step(`Verify expected property is present and its data type`, async () => {
+                expect(body).toHaveProperty('bookingid');
+                expect(typeof body.bookingid).toBe('number');
+        });
+
 
     });
 
