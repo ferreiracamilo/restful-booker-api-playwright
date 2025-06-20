@@ -1,5 +1,13 @@
 import { test, expect, request } from '@playwright/test';
 
+import invalidAdditionalNeeds from '../resources/data/createbooking/negative/byAdditionalNeeds.json'
+import invalidCheckins from '../resources/data/createbooking/negative/byCheckin.json'
+import invalidCheckouts from '../resources/data/createbooking/negative/byCheckout.json'
+import invalidDepositPaid from '../resources/data/createbooking/negative/byDepositPaid.json'
+import invalidFirstNames from '../resources/data/createbooking/negative/byFirstName.json'
+import invalidLastNames from '../resources/data/createbooking/negative/byLastName.json'
+import invalidTotalPrices from '../resources/data/createbooking/negative/byTotalPrice.json'
+
 test.describe('CREATE Booking', () => {
 
     test('[TC1] +POST CreateBooking', async ({ request }) => {
@@ -60,6 +68,58 @@ test.describe('CREATE Booking', () => {
                 });
         });
     //END TEST
+    });
+
+    invalidFirstNames.forEach((data, index) => {
+        test(`[TC4.FN.${index + 1}] - POST CreateBooking with invalid firstname: "${data.firstname}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with firstname as "${data.firstname}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
+    });
+
+    invalidLastNames.forEach((data, index) => {
+        test(`[TC5.FN.${index + 1}] - POST CreateBooking with invalid lastname: "${data.lastname}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with lastname as "${data.lastname}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
     });
 
 //END DESCRIBE
