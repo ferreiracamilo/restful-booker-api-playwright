@@ -37,6 +37,28 @@ test.describe('CREATE Booking', () => {
                 expect(postBody).toHaveProperty('bookingid');
                 expect(typeof postBody.bookingid).toBe('number');
         });
+
+        /* ## DELETE NEW BOOKING CREATED ## */
+        let tokenResponse;
+        await test.step(`Generate token`, async () => {
+            tokenResponse = await request.post(`${process.env.BASE_URL}/auth`, {
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    username: 'admin',
+                    password: 'password123'
+                }
+            });
+        });
+
+        let deleteResponse;
+        await test.step(`Perform deletion of new booking created under ${postBody.bookingid} ID`, async () => {
+                deleteResponse = await request.get(`${process.env.BASE_URL}/booking/${postBody.bookingid}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cookie': `token=${tokenResponse.token}`
+                    }
+                });
+        });
     //END TEST
     });
 
