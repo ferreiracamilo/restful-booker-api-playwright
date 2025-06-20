@@ -3,11 +3,11 @@ import { test, expect, request } from '@playwright/test';
 test.describe('CREATE Booking', () => {
 
     test('[TC1] +POST CreateBooking', async ({ request }) => {
-        let response;
-        let body;
+        let postResponse;
+        let postBody;
 
         await test.step(`Perform POST request to /booking`, async () => {
-            response = await request.post(`${process.env.BASE_URL}/booking`, {
+            postResponse = await request.post(`${process.env.BASE_URL}/booking`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -26,16 +26,16 @@ test.describe('CREATE Booking', () => {
         });
 
         await test.step(`Transform the response into JSON`, async () => {
-            body = await response.json();
+            postBody = await postResponse.json();
         });
 
         await test.step(`[ASSERTION] Verify response status is code 200`, async () => {
-            expect(response.status()).toBe(200);
+            expect(postResponse.status()).toBe(200);
         });
 
         await test.step(`Verify expected property is present and its data type`, async () => {
-                expect(body).toHaveProperty('bookingid');
-                expect(typeof body.bookingid).toBe('number');
+                expect(postBody).toHaveProperty('bookingid');
+                expect(typeof postBody.bookingid).toBe('number');
         });
     //END TEST
     });
