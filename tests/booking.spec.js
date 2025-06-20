@@ -94,10 +94,11 @@ test.describe('CREATE Booking', () => {
                 expect(response.status()).toBe(400);
             });
         });
+    //END TEST
     });
 
     invalidLastNames.forEach((data, index) => {
-        test(`[TC5.FN.${index + 1}] - POST CreateBooking with invalid lastname: "${data.lastname}"`, async ({ request }) => {
+        test(`[TC5.LN.${index + 1}] - POST CreateBooking with invalid lastname: "${data.lastname}"`, async ({ request }) => {
             let response;
             await test.step(`Perform POST request to /booking with lastname as "${data.lastname}"`, async () => {
                 response = await request.post(`${process.env.BASE_URL}/booking`, {
@@ -120,6 +121,142 @@ test.describe('CREATE Booking', () => {
                 expect(response.status()).toBe(400);
             });
         });
+    //END TEST
+    });
+
+    invalidTotalPrices.forEach((data, index) => {
+        test(`[TC6.TP.${index + 1}] - POST CreateBooking with invalid totalprice: "${data.totalprice}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with totalprice as "${data.totalprice}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
+    //END TEST
+    });
+
+    invalidDepositPaid.forEach((data, index) => {
+        test(`[TC7.DP.${index + 1}] - POST CreateBooking with invalid depositpaid: "${data.depositpaid}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with depositpaid as "${data.depositpaid}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
+    //END TEST
+    });
+
+    invalidCheckins.forEach((data, index) => {
+        test(`[TC8.CI.${index + 1}] - POST CreateBooking with invalid checkin: "${data.checkin}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with checkin as "${data.checkin}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
+    //END TEST
+    });
+
+    invalidCheckouts.forEach((data, index) => {
+        test(`[TC9.CO.${index + 1}] - POST CreateBooking with invalid checkout: "${data.checkout}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with checkout as "${data.checkout}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
+    //END TEST
+    });
+
+    invalidAdditionalNeeds.forEach((data, index) => {
+        test(`[TC10.AN.${index + 1}] - POST CreateBooking with invalid additionalneeds: "${data.additionalneeds}"`, async ({ request }) => {
+            let response;
+            await test.step(`Perform POST request to /booking with additionalneeds as "${data.additionalneeds}"`, async () => {
+                response = await request.post(`${process.env.BASE_URL}/booking`, {
+                    headers: { 'Content-Type': 'application/json' },
+                    data: {
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        totalprice: data.totalprice,
+                        depositpaid: data.depositpaid,
+                        bookingdates: {
+                            checkin: data.checkin,
+                            checkout: data.checkout,
+                        },
+                        additionalneeds: data.additionalneeds
+                    }
+                });
+            });
+
+            await test.step(`[ASSERTION] Verify response status is code 400`, async () => {
+                expect(response.status()).toBe(400);
+            });
+        });
+    //END TEST
     });
 
 //END DESCRIBE
