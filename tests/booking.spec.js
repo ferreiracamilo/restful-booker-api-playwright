@@ -296,7 +296,44 @@ test.describe('DELETE Booking', () => {
 });
 
 test.describe('GET Booking', () => {
-    //a
+    test(`[TC14] Get Booking by ID`, async ({ request }) => {
+
+        let response;
+        await test.step(`Perform GET request to /booking by id equal to 3657`, async () => {
+            response = await request.get(`${process.env.BASE_URL}/booking/3657`);
+        });
+
+        let body;
+        await test.step(`Transform the response into JSON`, async () => {
+            body = await response.json();
+        });
+
+        await test.step(`[ASSERTION] Verify response status is code 200`, async () => {
+            expect(response.status()).toBe(200);
+        });
+
+        const expectedProperties = [
+            'firstname', 'lastname', 'totalprice', 'depositpaid',
+            'bookingdates', 'additionalneeds'
+        ];
+
+        for (const prop of expectedProperties) {
+                await test.step(`Verify property ${prop} is present/included within response body(json)`, async () => {
+                expect(body).toHaveProperty(prop);
+                });
+        }
+
+        const expectedSubProperties = [
+            'checkin', 'checkout'
+        ];
+
+        for (const subProp of expectedSubProperties) {
+                await test.step(`Verify subproperty ${subProp} is present/included within response body(json)`, async () => {
+                expect(body.bookingdates).toHaveProperty(subProp);
+                });
+        }
+    //END TEST
+    });
 });
 
 test.describe('GET Booking IDs', () => {
