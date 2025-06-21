@@ -289,7 +289,10 @@ test.describe('DELETE Booking', () => {
         await test.step(`[ASSERTION] Verify response status is code 200`, async () => {
             expect(deleteResponse.status()).toBe(200);
         });
+    //END TEST
     });
+
+//END DESCRIBE
 });
 
 test.describe('GET Booking', () => {
