@@ -263,7 +263,33 @@ test.describe('CREATE Booking', () => {
 });
 
 test.describe('DELETE Booking', () => {
-    //a
+
+    test(`[TC13] DeleteBooking With Fixed Token`, async ({ request }) => {
+        let tokenResponse;
+        await test.step(`Generate token`, async () => {
+            tokenResponse = await request.post(`${process.env.BASE_URL}/auth`, {
+                headers: { 'Content-Type': 'application/json' },
+                data: {
+                    username: 'admin',
+                    password: 'password123'
+                }
+            });
+        });
+
+        let deleteResponse;
+        await test.step(`Perform DELETE request to /booking for record matching id 1`, async () => {
+            deleteResponse = await request.delete(`${process.env.BASE_URL}/booking/1`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Cookie': `token=${tokenResponse.token}`
+                },
+            });
+        });
+
+        await test.step(`[ASSERTION] Verify response status is code 200`, async () => {
+            expect(deleteResponse.status()).toBe(200);
+        });
+    });
 });
 
 test.describe('GET Booking', () => {
