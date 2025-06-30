@@ -52,8 +52,8 @@ test.describe('CREATE Booking', () => {
             tokenResponse = await request.post(`${process.env.BASE_URL}/auth`, {
                 headers: { 'Content-Type': 'application/json' },
                 data: {
-                    username: 'admin',
-                    password: 'password123'
+                    username: process.env.AUTH_USERNAME,
+                    password: process.env.AUTH_PASSWORD
                 }
             });
         });
@@ -270,8 +270,8 @@ test.describe('DELETE Booking', () => {
             tokenResponse = await request.post(`${process.env.BASE_URL}/auth`, {
                 headers: { 'Content-Type': 'application/json' },
                 data: {
-                    username: 'admin',
-                    password: 'password123'
+                    username: process.env.AUTH_USERNAME,
+                    password: process.env.AUTH_PASSWORD
                 }
             });
         });
